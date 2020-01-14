@@ -3,13 +3,18 @@
 
 {% block content %}
 
-<h1>Hello world</h1>
 <br/>
-<pre>
-{{api.0.AQI}}<br/><br/>
-Air Quality: {{api.0.AQI}}<br/>
-Reporting Area: {{api.0.ReportingArea}}<br/>
-Category: {{api.0.Category.Name}}<br/>
-</pre>
+
+{% if api %}
+    {% if api == "Error..." %}
+        There was an error, please try again..
+    {% else %}
+        <div class="jumbotron">
+          <h1 class="display-4">{{api.0.Category.Name}}</h1>
+          <p class="lead">{{api.0.ReportingArea}} Air Quality: {{api.0.AQI}}</p>
+        </div>
+    {% endif%}
+{% endif %}
+
 {% endblock %}
 
